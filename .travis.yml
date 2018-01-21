@@ -31,10 +31,14 @@ script:
   - Rscript -e "install.packages('pbdZMQ_0.3-2.tar.gz', './Rlib', repos = NULL)"
   - export R_LIBS_USER=`pwd`/Rlib.new
   - mv Rlib Rlib.new
-  - Rscript -e "pbdZMQ::get.zmq.cppflags()"
-  - Rscript -e "pbdZMQ::get.zmq.ldflags()"
-  - Rscript -e "pbdZMQ::get.pbdZMQ.ldflags()"
-  - Rscript -e "pbdZMQ::test.load.zmq()"
+  # - Rscript -e "pbdZMQ::get.zmq.cppflags()"
+  # - Rscript -e "pbdZMQ::get.zmq.ldflags()"
+  # - Rscript -e "pbdZMQ::get.pbdZMQ.ldflags()"
+  # - Rscript -e "pbdZMQ::test.load.zmq()"
+  - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
+  - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
+  - curl -OL https://cran.r-project.org/src/contrib/JuniperKernel_1.2.2.0.tar.gz
+  - Rscript -e "install.packages('JuniperKernel_1.2.2.0.tar.gz', './Rlib.new', repos = NULL)"
   - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
   - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
 

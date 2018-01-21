@@ -27,7 +27,7 @@ script:
   - curl -OL https://github.com/snoweye/pbdZMQ/archive/master.zip
   - unzip master.zip
   - mv pbdZMQ-master pbdZMQ
-  - R CMD build build --no-resave-data --no-manual --no-build-vignettes pbdZMQ
+  - R CMD build --no-resave-data --no-manual --no-build-vignettes pbdZMQ
   - Rscript -e "install.packages('pbdZMQ_0.3-2.tar.gz', './Rlib', repos = NULL)"
   - export R_LIBS_USER=`pwd`/Rlib.new
   - mv Rlib Rlib.new

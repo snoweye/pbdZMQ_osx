@@ -33,16 +33,20 @@ script:
   - cp -R Rlib Rlib.new
   - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
   - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
+  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
   - Rscript -e "pbdZMQ::test.load.zmq()"
   - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
   - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
+  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
   - rm -rf Rlib.new
   - cp -R Rlib Rlib.new
   - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
   - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
+  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
   - Rscript -e "library(pbdZMQ)"
   - otool -L ./Rlib.new/pbdZMQ/libs/pbdZMQ.so
   - otool -L ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
+  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
 
   # - Rscript -e "pbdZMQ::get.zmq.cppflags()"
   # - Rscript -e "pbdZMQ::get.zmq.ldflags()"

@@ -37,15 +37,17 @@ script:
   - export R_LIBS_USER=`pwd`/Rlib.new
   - cp -R Rlib Rlib.new
   - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
-  - Rscript -e "install.packages(c('jsonlite', 'repr', 'Rcpp', 'gdtools', 'data.table'), repos = 'https://cran.r-project.org/')"
+  - Rscript -e "install.packages(c('jsonlite', 'repr', 'Rcpp', 'gdtools', 'data.table', 'roxygen2'), repos = 'https://cran.r-project.org/')"
   # - curl -OL https://cran.r-project.org/src/contrib/JuniperKernel_1.2.2.0.tar.gz
   # - Rscript -e "install.packages('JuniperKernel_1.2.2.0.tar.gz', './Rlib.new', repos = NULL)"
   - curl -OL https://github.com/JuniperKernel/JuniperKernel/archive/master.zip
   - unzip master.zip
   - rm -rf master.zip
   - mv JuniperKernel-master JuniperKernel
-  - cd JuniperKernel; make
-  - Rscript -e "install.packages('JuniperKernel/build/JuniperKernel_1.3.0.0.tar.gz', './Rlib.new', repos = NULL)"
+  - cd JuniperKernel
+  - make
+  - cd ../
+  - Rscript -e "install.packages('./JuniperKernel/build/JuniperKernel_1.3.0.0.tar.gz', './Rlib.new', repos = NULL)"
   - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
 
 after_failure:

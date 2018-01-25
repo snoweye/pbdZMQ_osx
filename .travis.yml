@@ -24,7 +24,7 @@ install:
 script:
   - curl -OL https://github.com/snoweye/pbdZMQ/archive/master.zip
   - unzip master.zip; rm -rf master.zip; mv pbdZMQ-master pbdZMQ
-  - sed -i "s/system(cmd)/# system(cmd)/" ./pbdZMQ/R/zzz.r.in
+  # - cd pbdZMQ/R/; sed -i "s/system(cmd)/# system(cmd)/" zzz.r.in; cd ../../
   - R CMD build --no-resave-data --no-manual --no-build-vignettes pbdZMQ
   - Rscript -e "install.packages('pbdZMQ_0.3-2.tar.gz', repos = NULL)"
   - Rscript -e "install.packages(c('jsonlite', 'repr', 'Rcpp', 'gdtools', 'data.table', 'roxygen2'), repos = 'https://cran.r-project.org/')"

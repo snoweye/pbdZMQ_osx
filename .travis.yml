@@ -28,18 +28,10 @@ script:
   - unzip master.zip
   - rm -rf master.zip
   - mv pbdZMQ-master pbdZMQ
+  - sed -i "s/system(cmd)/# system(cmd)" ./pbdZMQ/R/zzz.r.in
   - R CMD build --no-resave-data --no-manual --no-build-vignettes pbdZMQ
   - Rscript -e "install.packages('pbdZMQ_0.3-2.tar.gz', './Rlib', repos = NULL)"
-  - Rscript -e "pbdZMQ::get.zmq.cppflags()"
-  - Rscript -e "pbdZMQ::get.zmq.ldflags()"
-  - Rscript -e "pbdZMQ::get.pbdZMQ.ldflags()"
-  - Rscript -e "pbdZMQ::test.load.zmq()"
-  - export R_LIBS_USER=`pwd`/Rlib.new
-  - cp -R Rlib Rlib.new
-  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
   - Rscript -e "install.packages(c('jsonlite', 'repr', 'Rcpp', 'gdtools', 'data.table', 'roxygen2'), repos = 'https://cran.r-project.org/')"
-  # - curl -OL https://cran.r-project.org/src/contrib/JuniperKernel_1.2.2.0.tar.gz
-  # - Rscript -e "install.packages('JuniperKernel_1.2.2.0.tar.gz', './Rlib.new', repos = NULL)"
   - curl -OL https://github.com/JuniperKernel/JuniperKernel/archive/master.zip
   - unzip master.zip
   - rm -rf master.zip
@@ -47,6 +39,9 @@ script:
   - cd JuniperKernel
   - make
   - cd ../
+  - export R_LIBS_USER=`pwd`/Rlib.new
+  - cp -R Rlib Rlib.new
+  - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
   - Rscript -e "install.packages('./JuniperKernel/build/JuniperKernel_1.3.0.0.tar.gz', './Rlib.new', repos = NULL)"
   - otool -D ./Rlib.new/pbdZMQ/libs/libzmq.5.dylib
 

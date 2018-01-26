@@ -28,7 +28,8 @@ script:
   - R CMD build --no-resave-data --no-manual --no-build-vignettes pbdZMQ
   - Rscript -e "install.packages('pbdZMQ_0.3-2.tar.gz', repos = NULL)"
   - Rscript -e "install.packages(c('jsonlite', 'repr', 'Rcpp', 'gdtools', 'data.table', 'roxygen2'), repos = 'https://cran.r-project.org/')"
-  - curl -OL https://github.com/JuniperKernel/JuniperKernel/archive/master.zip
+  # - curl -OL https://github.com/JuniperKernel/JuniperKernel/archive/master.zip
+  - curl -OL https://github.com/snoweye/JuniperKernel/archive/master.zip
   - unzip master.zip; rm -rf master.zip; mv JuniperKernel-master JuniperKernel
   - cd JuniperKernel; make; cd ../
   - mkdir Rlib

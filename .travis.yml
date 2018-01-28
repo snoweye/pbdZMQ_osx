@@ -9,6 +9,7 @@ language: c
 branches:
   only:
     - master
+    - osx_static
 
 ### For osx
 os:
